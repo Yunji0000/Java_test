@@ -14,8 +14,11 @@ class Solution {
         if(sum_ch > (2*a*b)){
             answer = sum_ch;
         }
-        else{
+        else if(sum_ch < (2*a*b)){
             answer = 2*a*b;
+        }
+        else{
+            answer = sum_ch;
         }
         return answer;
     }
