@@ -1,21 +1,20 @@
-public class Solution {
+class Solution {
     public String solution(int[] numLog) {
-        String answer = ""; 
+        String answer = "";
+        
 
-        for (int i = 1; i < numLog.length; i++) {
-            int c = numLog[i] - numLog[i - 1]; //이전-현재 비교
-            
-            if (c == 1) {
-                answer += "w"; 
-            } else if (c == -1) {
-                answer += "s"; 
-            } else if (c == 10) {
-                answer += "d"; 
-            } else if (c == -10) {
-                answer += "a"; 
-            }
-        }
-
-        return answer; 
+		for (int i = 0; i < numLog.length(); i++) {
+			char c = numLog.charAt(i);
+			if (c == 'w') {
+				answer += 1;
+			} else if (c == 's') {
+				answer -= 1;
+			} else if (c == 'd') {
+				answer += 10;
+			} else if (c == 'a') {
+				answer -= 10;
+			}
+		}
+        return answer;
     }
 }
