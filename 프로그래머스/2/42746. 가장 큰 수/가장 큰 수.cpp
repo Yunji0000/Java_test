@@ -1,33 +1,28 @@
 
 #include <string>
+#include <string>
 #include <vector>
 #include <algorithm>
 
 using namespace std;
 
-bool compare(const string &x, const string &y) {
-    return x + y > y + x; // 두 조합 중 더 큰 것을 앞에 오도록 정렬
+bool compare(int a, int b)
+{
+    string str1=to_string(a)+to_string(b);
+    string str2=to_string(b)+to_string(a);
+    return str1>str2;
 }
 
 string solution(vector<int> numbers) {
-    vector<string> strNumbers;
-    
-    // 숫자를 문자열로 변환
-    for (int num : numbers) {
-        strNumbers.push_back(to_string(num));
-    }
-    
-    sort(strNumbers.begin(), strNumbers.end(), compare);
-    
-    // 모든 숫자를 이어 붙임
+    sort(numbers.begin(), numbers.end(), compare);
     string answer = "";
-    for (const string &s : strNumbers) {
-        answer += s;
+    for(int i=0; i<numbers.size(); i++)
+    {
+        answer+=to_string(numbers[i]);
     }
-    
-    if (answer[0] == '0') {
+    if(answer[0]=='0')
+    {
         return "0";
     }
-    
     return answer;
 }
