@@ -1,34 +1,22 @@
 #include <string>
+#include <vector>
 #include <algorithm> 
 
 using namespace std;
 
-struct Command {
-    int i; 
-    int j; 
-    int k; 
-};
-
 vector<int> solution(vector<int> array, vector<vector<int>> commands) {
     vector<int> answer; 
-    vector<Command> commandList; 
 
-  
-    for (int cmdIndex = 0; cmdIndex < commands.size(); cmdIndex++) {
-        commandList.push_back({commands[cmdIndex][0] - 1, commands[cmdIndex][1] - 1, commands[cmdIndex][2] - 1});
-    }
+    for (const auto& cmd : commands) {
+        int i = cmd[0] - 1; // 시작 인덱스
+        int j = cmd[1] - 1; // 끝 인덱스
+        int k = cmd[2] - 1; // k번째
 
-    for (int commandIndex = 0; commandIndex < commandList.size(); commandIndex++) {
-        vector<int> temp;
-
-
-        for (int index = commandList[commandIndex].i; index <= commandList[commandIndex].j; index++) {
-            temp.push_back(array[index]);
-        }
-
+        vector<int> temp(array.begin() + i, array.begin() + j + 1); // 부분 배열 생성
+        
         sort(temp.begin(), temp.end());
-
-        answer.push_back(temp[commandList[commandIndex].k]);
+        
+        answer.push_back(temp[k]); // k번째 수 추가 (0-indexed이므로 k 사용)
     }
 
     return answer; 
