@@ -1,23 +1,24 @@
-#include <string>
 #include <vector>
-#include <algorithm> 
-
+#include <algorithm>
 using namespace std;
 
 vector<int> solution(vector<int> array, vector<vector<int>> commands) {
-    vector<int> answer; 
+    vector<int> answer;
 
-    for (const auto& cmd : commands) {
-        int i = cmd[0] - 1; // 시작 인덱스
-        int j = cmd[1] - 1; // 끝 인덱스
-        int k = cmd[2] - 1; // k번째
+    for(int i = 0; i < commands.size(); i++) {
+        int start = commands[i][0] - 1; // 시작 인덱스 (0-indexed)
+        int n = commands[i][1];         // 끝 인덱스 (1-indexed)
+        int index = commands[i][2] - 1; // k번째 수 (0-indexed)
+        vector<int> temp;
 
-        vector<int> temp(array.begin() + i, array.begin() + j + 1); // 부분 배열 생성
-        
+        for (int j = start; j < n; j++){ //부분 배열
+            temp.push_back(array[j]);
+        }
+
         sort(temp.begin(), temp.end());
-        
-        answer.push_back(temp[k]); // k번째 수 추가 (0-indexed이므로 k 사용)
+
+        answer.push_back(temp[index]); // k번째 수 추가
     }
 
-    return answer; 
+    return answer;
 }
